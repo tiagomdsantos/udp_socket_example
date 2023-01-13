@@ -1,0 +1,8 @@
+
+FROM python:3.10.8-buster
+
+RUN pip3 install requests websocket
+
+COPY . .
+
+CMD ["python3", "udp_socket_server.py"]
