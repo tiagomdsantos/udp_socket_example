@@ -5,8 +5,6 @@ import os
 import sys
 import argparse
 
-
-
 def main(UDP_IP, UDP_PORT, SOCKET_TYPE, DEVICE_ID, MESSAGE):
     # here we prioritize arguments over environement variables
     if UDP_IP is None: 
@@ -58,4 +56,5 @@ if __name__ == "__main__":
 
     main(args.ip, args.port, args.socket_type, args.deviceid, args.message)
 
-# docker build . -f Dockerfile -t socket_client
+# docker build . -f Dockerfile_client -t socket_client
+# docker container run -it --rm --network host socket_client

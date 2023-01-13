@@ -31,7 +31,6 @@ def main(UDP_PORT, SOCKET_TYPE):
     logging.debug(f"Port: {UDP_PORT}")
 
     logging.info("Waiting for messages...")
-    logging.debug(f"{SOCKET_TYPE}")
     while True:
         data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
         logging.debug(f"received message: {data}")
@@ -45,4 +44,5 @@ if __name__ == "__main__":
     logging.basicConfig(format='%(levelname)s: %(message)s', level=logging.DEBUG)
     main(args.port, args.socket_type)
     
-# docker build . -f Dockerfile -t socket_server
+# docker build . -f Dockerfile_server -t socket_server
+# docker container run -it --rm --network host socket_server

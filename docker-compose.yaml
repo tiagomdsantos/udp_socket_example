@@ -1,0 +1,28 @@
+
+version: "3"
+services:
+  udp_server:
+    container_name: "udp_server"
+    build:
+      context: ./
+      dockerfile: Dockerfile_server
+    image: udp_server
+    environment:
+    - UDP_PORT=5005
+    - SOCKET_TYPE=IPV6
+    network_mode: host
+
+  udp_client:
+    container_name: "udp_client"
+    build:
+      context: ./
+      dockerfile: Dockerfile_client
+    image: udp_client
+    environment:
+    - DEVICE_ID=udp_client_01
+    - DEST_IP=::1 
+    - DEST_PORT=5005
+    - SOCKET_TYPE=IPV6
+    depends_on:
+      - udp_server
+    network_mode: host # host # required to get the host's mac address
